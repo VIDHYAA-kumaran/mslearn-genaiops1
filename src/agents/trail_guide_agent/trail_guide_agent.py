@@ -9,7 +9,7 @@ from azure.ai.projects.models import PromptAgentDefinition
 load_dotenv()
 
 # Read instructions from prompt file
-prompt_file = Path(__file__).parent / 'prompts' / 'v4_instructions.txt'
+prompt_file = Path(__file__).parent / 'prompts' / 'v4_optimized_concise.txt'
 with open(prompt_file, 'r') as f:
     instructions = f.read().strip()
 
@@ -21,7 +21,7 @@ project_client = AIProjectClient(
 agent = project_client.agents.create_version(
     agent_name=os.environ["AGENT_NAME"],
     definition=PromptAgentDefinition(
-        model="<available-lower-cost-model>", # Use Global Standard model
+        model="gpt-4.1-mini", # Use Global Standard model
         instructions=instructions,
     ),
 )
